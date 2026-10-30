@@ -10,17 +10,20 @@ const input_immatriculation = document.querySelector("#immatriculation");
 const input_categorie = document.querySelector("#categorie");
 const input_prixJour = document.querySelector("#prix-jour");
 const input_statut = document.querySelector("#statut");
-const erreur_marque = document.querySelector("#erreur_marque");
-const erreur_modele = document.querySelector("#erreur_modele");
-const erreur_immatriculation = document.querySelector("#erreur_immatriculation");
-const erreur_categorie = document.querySelector("#erreur_categorie");
-const erreur_prix_jour = document.querySelector("#erreur_prix_jour");
-const erreur_statut = document.querySelector("#erreur_statut");
+// const erreur_marque = document.querySelector("#erreur_marque");
+// const erreur_modele = document.querySelector("#erreur_modele");
+// const erreur_immatriculation = document.querySelector("#erreur_immatriculation");
+// const erreur_categorie = document.querySelector("#erreur_categorie");
+// const erreur_prix_jour = document.querySelector("#erreur_prix_jour");
+// const erreur_statut = document.querySelector("#erreur_statut");
 const form = document.querySelector("#formulaire-voiture");
+const boutonAnnuler = document.querySelector("#annuler-modification");
+const input_recherche = document.querySelector("#recherche");
 
 
 
-function afficherVoitures() {
+
+function afficherVoitures(voitures) {
     tbody.textContent = ""
     voitures.forEach(function (d) {
         const tr = document.createElement("tr")
@@ -73,6 +76,7 @@ function afficherVoitures() {
         buttonSupprimer.textContent = "Supprimer";
         buttonSupprimer.addEventListener("click", () => {
             supprimer(d.id);
+            reinitialiserFormulaire();
         })
         div.append(buttonModifier, buttonSupprimer)
         tdBtn.append(div)
@@ -80,7 +84,7 @@ function afficherVoitures() {
         tbody.append(tr)
     })
 }
-afficherVoitures();
+afficherVoitures(voitures);
 
 
 // Ajouter
@@ -102,7 +106,7 @@ formulaire.addEventListener("click", function (event) {
 
     if (idModifier === null) {
         voitures.push(nouvelleVoiture);
-        form.reset();
+        // form.reset();
         prochainId++
     }
     else {
@@ -117,13 +121,14 @@ formulaire.addEventListener("click", function (event) {
             categorie: input_categorie.value,
             prixJour: input_prixJour.value,
             statut: input_statut.value
-
         }
         voitures[index] = modifierVoiture;
         idModifier = null;
+        reinitialiserFormulaire()
     }
+    form.reset();
 
-    afficherVoitures();
+    afficherVoitures(voitures);
 
 });
 
@@ -135,7 +140,7 @@ function supprimer(id) {
         `Voulez-vous vraiment supprimer ${voiture.marque} ${voiture.modele} (${voiture.immatriculation}) ?`
     )) return;
     voitures = voitures.filter((v) => v.id !== id);
-    afficherVoitures();
+    afficherVoitures(voitures);
 }
 
 function Modifier(id) {
@@ -151,22 +156,24 @@ function Modifier(id) {
     document.querySelector("#annuler-modification").hidden = false;
     document.querySelector("#bouton-enregistrer").textContent = "Modifier la voiture";
 
-
-} if (idModifier !== null) {
-    const voituremodifier = voituresInitiales.find((v) => v.id === idModifier)
-
-
-    if (voituremodifier) {
-        voituremodifier.marque = input_marque;
-        voituremodifier.modele = input_modele;
-        voituremodifier.immatriculation = input_immatriculation;
-        voituremodifier.categorie = input_categorie;
-        voituremodifier.prixJour = input_prixJour;
-        voituremodifier.statut = input_statut;
-        idModifier = null;
-        
-    }
-
-
+}
+function reinitialiserFormulaire() {
+    form.reset();
+    document.querySelector("#titre-formulaire").textContent =
+        "Ajouter une voiture";
+    document.querySelector("#bouton-enregistrer").textContent =
+        "Ajouter la voiture";
+    document.querySelector("#annuler-modification").hidden = true;
+    idModifier = null ;
 }
 
+boutonAnnuler.addEventListener("click" , ()=>{
+    reinitialiserFormulaire();
+})
+
+function rechercher() {
+    const texte = input_recherche.value.trim().toLowerCase();
+    const resultat = voitures.filter(({marque , modele , immatriculation})=>[marque , modele , immatriculation].some((champ)=>champ.toLowerCase().startsWith(texte)))
+    afficherVoitures(resultat);
+}
+input_recherche.addEventListener("input", rechercher);
