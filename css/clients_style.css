@@ -1,0 +1,364 @@
+:root {
+    --bleu: ##2852E3;
+    --bleu-clair: #eef3fe;
+    --texte: #14213d;
+    --gris: #64748b;
+    --fond: #f3f5fa;
+    --bordure: #dde4f0;
+    --rayon: 14px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    font-family: "Roboto", Arial, sans-serif;
+    background: var(--fond);
+    color: var(--texte);
+}
+
+h1, h2, h3, h4, p { margin: 0; }
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* ---------- HEADER ---------- */
+.site-header { background: #fff; }
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    min-height: 76px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: var(--texte);
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.brand-mark {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: var(--bleu);
+    color: #fff;
+    font-size: 20px;
+}
+
+.brand small {
+    display: block;
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    color: var(--gris);
+}
+
+.site-header nav { display: flex; gap: 8px; }
+
+.site-header nav a {
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--gris);
+    text-decoration: none;
+}
+
+.site-header nav a[aria-current="page"] {
+    background: var(--bleu-clair);
+    color: var(--bleu);
+    font-weight: 700;
+}
+
+.agency-label { font-size: 12px; color: var(--gris); }
+
+/* ---------- MISE EN PAGE : formulaire à gauche, résumé à droite ---------- */
+.main-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 24px;
+    align-items: start;
+    padding-top: 32px;
+    padding-bottom: 32px;
+}
+
+.page-intro,
+.progression { grid-column: 1 / -1; }
+
+/* ---------- INTRO ---------- */
+.page-intro { display: grid; gap: 8px; }
+
+.eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--bleu);
+}
+
+.page-intro h1 { font-size: 36px; font-weight: 700; }
+.page-intro p:last-child { font-size: 15px; color: var(--gris); }
+
+/* ---------- PROGRESSION ---------- */
+.progression {
+    background: #fff;
+    border: 1px solid var(--bordure);
+    border-radius: var(--rayon);
+    padding: 12px 24px;
+}
+
+.progression ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.progression li {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 13px;
+    color: var(--gris);
+}
+
+.progression li span {
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--fond);
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.progression .etape_active { color: var(--bleu); font-weight: 700; }
+
+.progression .etape_active span,
+.progression .etape_terminee span {
+    background: var(--bleu);
+    color: #fff;
+}
+
+/* Étape déjà passée : le numéro est remplacé par une coche */
+.progression .etape_terminee span { font-size: 0; }
+.progression .etape_terminee span::after { content: "✓"; font-size: 14px; }
+
+/* ---------- CARTES BLANCHES ---------- */
+.formulaire,
+.votre_location {
+    background: #fff;
+    border: 1px solid var(--bordure);
+    border-radius: var(--rayon);
+    padding: 24px;
+}
+
+.formulaire { display: grid; gap: 20px; }
+
+/* Les <div></div> vides servent de traits de séparation */
+.formulaire div:empty,
+.votre_location div:empty { border-top: 1px solid var(--bordure); }
+
+/* ---------- TITRE D'ÉTAPE ---------- */
+.titre_etape { display: grid; gap: 8px; }
+
+.titre_etape_repere {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--bleu);
+}
+
+.titre_etape_titre { font-size: 24px; font-weight: 700; }
+.titre_etape_description { font-size: 14px; color: var(--gris); }
+
+/* ---------- CARTES VÉHICULE ---------- */
+.cartes {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 12px;
+}
+
+.carte {
+    display: grid;
+    gap: 12px;
+    padding: 16px;
+    border: 1px solid var(--bordure);
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+/* Carte sélectionnée (quand le radio est coché) */
+.carte:has(input:checked) {
+    border: 2px solid var(--bleu);
+    padding: 15px;
+    background: #f7f9ff;
+}
+
+.carte_haut {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.carte_categorie { font-size: 12px; color: var(--gris); }
+
+.carte_choix {
+    width: 18px;
+    height: 18px;
+    margin: 0;
+    accent-color: var(--bleu);
+}
+
+.voiture { display: grid; gap: 4px; }
+.voiture_nom { font-size: 16px; font-weight: 700; }
+.voiture_statut { font-size: 13px; font-weight: 500; color: #16a34a; }
+.voiture_prix { font-size: 13px; font-weight: 700; color: var(--bleu); }
+
+/* ---------- PÉRIODE DE LOCATION ---------- */
+.periode_location { display: grid; gap: 16px; }
+.periode_location h4 { font-size: 18px; font-weight: 700; }
+
+.location_dates {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.location_date { display: grid; gap: 8px; }
+.location_date label { font-size: 14px; font-weight: 700; }
+
+.location_date input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid var(--bordure);
+    border-radius: 8px;
+    background: #fff;
+    color: var(--texte);
+    font: inherit;
+    font-size: 14px;
+}
+
+.location_date input:focus {
+    outline: 2px solid var(--bleu);
+    outline-offset: 1px;
+}
+
+.periode_location_duree {
+    padding: 12px 16px;
+    border-radius: 8px;
+    background: var(--bleu-clair);
+    color: var(--bleu);
+    font-size: 13px;
+}
+
+/* ---------- BOUTONS ---------- */
+.boutons {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.boutons button {
+    padding: 14px 32px;
+    border-radius: 8px;
+    font: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+#btn_recommencer {
+    background: #fff;
+    border: 1px solid var(--bordure);
+    color: var(--texte);
+}
+
+#btn_suivant {
+    min-width: 160px;
+    background: var(--bleu);
+    border: 1px solid var(--bleu);
+    color: #fff;
+}
+
+#btn_suivant:hover { filter: brightness(1.1); }
+
+/* ---------- RÉSUMÉ "VOTRE LOCATION" ---------- */
+.votre_location { position: sticky; top: 24px; }
+
+.votre_location > div { display: grid; gap: 12px; }
+.votre_location > div > div { display: grid; gap: 8px; }
+
+.location_repere {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--bleu);
+}
+
+.votre_location h3 { font-size: 20px; font-weight: 700; }
+.votre_location h2 { font-size: 15px; font-weight: 700; }
+.votre_location h4 { font-size: 13px; font-weight: 700; }
+.votre_location p { font-size: 12px; color: var(--gris); }
+
+/* Ligne "Total estimé ........ 750 MAD" */
+.votre_location div:has(> #prix) {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#prix { font-size: 28px; font-weight: 700; color: var(--bleu); }
+
+/* Dernier paragraphe dans un encadré gris */
+.votre_location > div > div:last-child p:last-child {
+    padding: 10px 12px;
+    border-radius: 8px;
+    background: var(--fond);
+}
+
+/* ---------- FOOTER ---------- */
+.site-footer {
+    display: flex;
+    gap: 8px;
+    padding-bottom: 32px;
+    font-size: 12px;
+    color: var(--gris);
+}
+
+.site-footer span { font-weight: 500; }
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 900px) {
+    .main-content { grid-template-columns: 1fr; }
+    .votre_location { position: static; }
+    .header-content { flex-wrap: wrap; padding-top: 12px; padding-bottom: 12px; }
+}
+
+@media (max-width: 600px) {
+    .agency-label { display: none; }
+    .location_dates { grid-template-columns: 1fr; }
+    .boutons { flex-direction: column-reverse; }
+
+    /* Sur mobile, on ne garde que le texte de l'étape active */
+    .progression li { flex: 0; font-size: 0; }
+    .progression .etape_active { flex: 1; font-size: 12px; }
+    .progression li span { font-size: 13px; }
+}

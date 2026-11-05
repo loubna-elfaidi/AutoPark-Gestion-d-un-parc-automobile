@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="AutoPark — Interface de gestion du parc automobile Atlas Auto." />
+    <title>Gestion du parc · AutoPark</title>
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="css/clients_style.css" />
+    <script type="module" src="js/voitures.js"></script>
+</head>
+
+<body>
+    <!-- <a class="skip-link" href="#contenu">Aller au contenu</a> -->
+    <header class="site-header">
+        <div class="container header-content">
+            <a class="brand" href="voitures.html" aria-label="AutoPark — Gestion du parc">
+                <span class="brand-mark" aria-hidden="true">A<span>.</span></span>
+                <span>AutoPark<small>ATLAS AUTO</small></span>
+            </a>
+            <nav aria-label="Navigation principale">
+                <!-- index.html est le dashboard à créer par l'apprenant. -->
+                <a href="index.html">Dashboard</a>
+                <a href="voitures.html">Gestion du parc</a>
+                <a href="clients.html" aria-current="page">Ma location</a>
+            </nav>
+            <span class="agency-label">Agence de location</span>
+        </div>
+    </header>
+
+    <main id="contenu" class="container main-content">
+        <section class="page-intro" aria-labelledby="titre-page">
+            <p class="eyebrow">VOTRE LOCATION SUR MESURE</p>
+            <h1 id="titre-page">Composez votre location</h1>
+            <p>Votre voiture, vos dates, vos options. À vous de choisir.</p>
+        </section>
+        <nav class="progression" aria-label="Progression de la réservation">
+            <ul>
+                <li class="etape_active" aria-current="step"><span>1</span> Véhicule</li>
+                <li><span>2</span> Récupération</li>
+                <li><span>3</span> Options</li>
+                <li><span>4</span> Coordonnées</li>
+                <li><span>5</span> Récapitulatif</li>
+            </ul>
+        </nav>
+        <form class="formulaire" id="formulaire">
+            <div class="titre_etape">
+                <span class="titre_etape_repere">01 / VÉHICULE</span>
+                <h3 class="titre_etape_titre" id="titre_etape_titre">Choisissez votre véhicule</h3>
+                <p class="titre_etape_description">Sélectionnez une voiture disponible et votre période de location.
+                </p>
+            </div>
+            <div class="cartes" id="cartes">
+                <!-- <div class="carte">
+                    <div class="carte_haut">
+                        <span class="carte_categorie">Citadine</span>
+                        <input type="radio" name="vehicule" class="carte_choix">
+                    </div>
+                    <div class="voiture">
+                        <h3 class="voiture_nom">Dacia Sandero</h3>
+                        <p class="voiture_statut">Disponible</p>
+                        <p class="voiture_prix">250 MAD / jour</p>
+                    </div>
+                </div> -->
+            </div>
+
+            <div></div>
+            <section class="periode_location">
+                <h4>Votre période de location</h4>
+                <div class="location_dates">
+                    <div class="location_date">
+                        <label for="date_debut">Date de début *</label>
+                        <input type="date" id="date_debut" name="date_debut">
+                    </div>
+                    <div class="location_date">
+                        <label for="date_fin">Date de fin *</label>
+                        <input type="date" id="date_fin" name="date_fin">
+                    </div>
+                </div>
+                <p class="periode_location_duree">Durée : 3 jours. Les dates de début et de fin sont incluses.</p>
+                <div></div>
+                <div class="boutons">
+                    <button id="btn_recommencer">Recommencer</button>
+                    <button id="btn_suivant">Suivant</button>
+
+                </div>
+        </form>
+
+        </section>
+        <section class="votre_location">
+            <div>
+                <span class="location_repere">VOTRE LOCATION</span>
+                <h3>Dacia Sandero</h3>
+                <p>Citadine · 250 MAD / jour</p>
+                <div></div>
+                <div>
+                    <h2>10 → 12 novembre 2026</h2>
+                    <p>3 jours · dates incluses</p>
+                    <p>Véhicule · 3 × 250 MAD</p>
+                    <p>Récupération</p>
+                </div>
+                <div></div>
+                <div>
+                    <div>
+                        <h4>Total estimé</h4>
+                        <span id="prix">750 MAD</span>
+                    </div>
+                    <p>Frais de récupération facturés une seule fois.</p>
+                    <p>Une demande, sans paiement en ligne.</p>
+                </div>
+            </div>
+        </section>
+
+
+
+
+
+
+
+    </main>
+
+
+
+    <footer class="site-footer container">
+        <span>AutoPark</span>
+        <p>Une gestion simple, un parc bien organisé.</p>
+    </footer>
+</body>
+
+</html>
